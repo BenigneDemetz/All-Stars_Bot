@@ -51,7 +51,7 @@ async def stopgiveaway():
 async def on_message(ctx: commands.Context):
     print('a')
     player_test = Player()
-    player_test.create_new_player(player_test, ctx)
+    player_test.create_new_player(ctx)
     global g
     if g == None:
         return
