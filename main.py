@@ -23,8 +23,10 @@ g: Game = None
 async def on_ready():
     print('ready')
 
+
 @bot.command()
-async def startgiveaway(ctx: commands.Context, arg = 1):
+async def startgiveaway(ctx: commands.Context, arg=1):
+    print('e')
     global g
     print(g)
     if g != None:
@@ -34,6 +36,7 @@ async def startgiveaway(ctx: commands.Context, arg = 1):
             print('error : \n' + str(e))
         return
     await g.start_giveaway(ctx)
+
 
 @bot.command()
 async def stopgiveaway(ctx):
@@ -46,6 +49,7 @@ async def stopgiveaway(ctx):
         return
     await g.stop_giveaway(ctx)
 
+
 @bot.event
 async def on_message(ctx: commands.Context):
     global g
@@ -57,9 +61,11 @@ async def on_message(ctx: commands.Context):
             await ctx.add_reaction("❌")
             time.sleep(5)
             await ctx.message.delete()
-            await bot.process_commands(ctx) #activer les commandes
+            await bot.process_commands(ctx)  # activer les commandes
             return
         g.add_player(p, ctx)
         await ctx.add_reaction("✅")
-    await bot.process_commands(ctx) #activer les commandes
+    await bot.process_commands(ctx)  # activer les commandes
+
+
 bot.run(os.getenv('KEY_A_S'))
