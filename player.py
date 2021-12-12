@@ -12,10 +12,10 @@ class Player():
     def __init__(self, ctx: commands.Context):
         pass
 
-    def create_new_player(self, msg):
-        self.id = msg.author.id
-        self.profil = msg.author
+    def create_new_player(self, ctx):
+        self.id = ctx.author.id
+        self.profil = ctx.author
         self.participations = 1
-        address = msg.content[msg.content.find("0x"):]
+        address = ctx.content[ctx.content.find("0x"):]
         print(address)
         self.address
