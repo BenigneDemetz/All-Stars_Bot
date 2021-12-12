@@ -26,6 +26,7 @@ async def on_ready():
 @bot.command()
 async def startgiveaway(ctx: commands.Context, arg = 1):
     global g
+    print(g)
     if g != None:
         try:
             await ctx.add_reaction("❌")
