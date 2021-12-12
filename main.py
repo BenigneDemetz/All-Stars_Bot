@@ -26,13 +26,12 @@ async def on_ready():
 @bot.command()
 async def startgiveaway(ctx: commands.Context, arg = 1):
     global g
-    if g == None:
+    if g != None:
         try:
             await ctx.add_reaction("❌")
         except Exception as e:
             print('error : \n' + str(e))
         return
-    print('e')
     await g.start_giveaway(ctx)
 
 @bot.command()
