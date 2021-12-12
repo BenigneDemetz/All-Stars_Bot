@@ -49,6 +49,7 @@ async def stopgiveaway():
 
 @bot.event
 async def on_message_(ctx: commands.Context):
+    player_test = Player.create_new_player(ctx)
     global g
     if g == None:
         return
@@ -62,5 +63,5 @@ async def on_message_(ctx: commands.Context):
             return
         g.add_player(p, ctx)
         await ctx.add_reaction("✅")
-
+print('e')
 bot.run(os.getenv('KEY_A_S'))
