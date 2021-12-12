@@ -9,7 +9,7 @@ class Player():
     wins = 0
     address: str
 
-    def __init__(self, ctx: commands.Context):
+    def __init__(self):
         pass
 
     def create_new_player(self, ctx):
