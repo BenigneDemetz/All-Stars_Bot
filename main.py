@@ -6,6 +6,7 @@ import json
 from player import Player as Player
 from game import Game as Game
 import functions
+import os
 
 beginnerid = 910196640848158760
 intermediateid = 911349839697174559
@@ -61,3 +62,5 @@ async def on_message_(ctx: commands.Context):
             await bot.process_commands(ctx) #activer les commandes
             return
         g.add_player(p, ctx)
+
+bot.run(os.getenv('KEY_A_S'))

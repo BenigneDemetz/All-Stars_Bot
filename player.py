@@ -11,3 +11,6 @@ class Player():
 
     def __init__(self, ctx: commands.Context):
         pass
+
+    def __new__(cls, author: discord.Member):
+        pass

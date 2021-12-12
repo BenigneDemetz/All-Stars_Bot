@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 
+
 def has_perm(ctx: commands.Context):
     author: discord.Member = ctx.author
     for i in author.roles:
