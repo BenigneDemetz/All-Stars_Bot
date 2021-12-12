@@ -26,32 +26,21 @@ async def on_ready():
 @bot.command()
 async def startgiveaway(ctx: commands.Context, arg = 1):
     global g
-    if not functions.has_perm(ctx):
-        return
-    if g != None:
+    g.start_giveaway(ctx)
+
+@bot.command()
+async def stopgiveaway(ctx):
+    global g
+    if g == None:
         try:
             await ctx.add_reaction("❌")
         except Exception as e:
             print('error : \n' + str(e))
         return
-    embed = discord.Embed(title="A Giveaway started !", color=0x00ff00)
-    await ctx.send(embed=embed)
-    g = Game(ctx.guild)
-    try:
-        await ctx.message.delete()
-    except:
-        pass
-
-@bot.command()
-async def stopgiveaway():
-    global g
-    pass
+    g.stop_giveaway(ctx)
 
 @bot.event
 async def on_message(ctx: commands.Context):
-    print('a')
-    player_test = Player()
-    player_test.create_new_player(ctx)
     global g
     if g == None:
         return
