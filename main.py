@@ -48,7 +48,7 @@ async def stopgiveaway():
     pass
 
 @bot.event
-async def on_message_(ctx: commands.Context):
+async def on_message(ctx: commands.Context):
     player_test = Player.create_new_player(ctx)
     global g
     if g == None:
