@@ -13,7 +13,7 @@ intermediateid = 911349839697174559
 hunterid = 910196128673312779
 luckyid = 911349291367432283
 guildid = 909518751194550303
-bot = commands.Bot("!")
+bot = commands.Bot("$")
 commande = "0x"
 
 g: Game = None
