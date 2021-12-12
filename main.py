@@ -26,7 +26,6 @@ async def on_ready():
 @bot.command()
 async def startgiveaway(ctx: commands.Context, arg = 1):
     global g
-    author: discord.Member = ctx.author
     if not functions.has_perm(ctx):
         return
     if g != None:
@@ -54,7 +53,7 @@ async def on_message_(ctx: commands.Context):
     if g == None:
         return
     if commande in ctx.message.content:
-        p: Player = Player(ctx)
+        p: Player = Player(ctx.author)
         if g.has(p):
             await ctx.add_reaction("❌")
             time.sleep(5)
@@ -62,5 +61,6 @@ async def on_message_(ctx: commands.Context):
             await bot.process_commands(ctx) #activer les commandes
             return
         g.add_player(p, ctx)
+        await ctx.add_reaction("✅")
 
 bot.run(os.getenv('KEY_A_S'))

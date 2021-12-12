@@ -1,3 +1,5 @@
+import json
+
 import discord
 from player import Player as player
 import functions
@@ -19,3 +21,7 @@ class Game():
 
     def has(self, p: player):
         return p in self.players
+
+    def save_players(self):
+        with open('players.json', 'w') as f:
+            json.dump(self.players, f)
