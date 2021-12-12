@@ -16,7 +16,7 @@ class Game():
     def __new__(self, *args, **kwargs):
         return self
 
-    def start_giveaway(self, ctx):
+    async def start_giveaway(self, ctx):
         if not functions.has_perm(ctx):
             return
         print('game start')
@@ -28,7 +28,7 @@ class Game():
         except:
             pass
 
-    def stop_giveaway(self, ctx):
+    async def stop_giveaway(self, ctx):
         print('game_stop')
         pass
 

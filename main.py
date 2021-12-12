@@ -32,7 +32,7 @@ async def startgiveaway(ctx: commands.Context, arg = 1):
         except Exception as e:
             print('error : \n' + str(e))
         return
-    g.start_giveaway(ctx)
+    await g.start_giveaway(ctx)
 
 @bot.command()
 async def stopgiveaway(ctx):
@@ -43,7 +43,7 @@ async def stopgiveaway(ctx):
         except Exception as e:
             print('error : \n' + str(e))
         return
-    g.stop_giveaway(ctx)
+    await g.stop_giveaway(ctx)
 
 @bot.event
 async def on_message(ctx: commands.Context):
