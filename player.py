@@ -17,5 +17,6 @@ class Player():
         self.profil = ctx.author
         self.participations = 1
         address = ctx.content[ctx.content.find("0x"):]
+        address = address[42:]
         print(address)
         self.address = address
