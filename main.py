@@ -32,6 +32,7 @@ async def startgiveaway(ctx: commands.Context, arg = 1):
         except Exception as e:
             print('error : \n' + str(e))
         return
+    print('e')
     await g.start_giveaway(ctx)
 
 @bot.command()
