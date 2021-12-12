@@ -18,4 +18,4 @@ class Player():
         self.participations = 1
         address = ctx.content[ctx.content.find("0x"):]
         print(address)
-        self.address
+        self.address = address
