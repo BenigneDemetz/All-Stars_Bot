@@ -61,4 +61,5 @@ async def on_message(ctx: commands.Context):
             return
         g.add_player(p, ctx)
         await ctx.add_reaction("✅")
+    await bot.process_commands(ctx) #activer les commandes
 bot.run(os.getenv('KEY_A_S'))
