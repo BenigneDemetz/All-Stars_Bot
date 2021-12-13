@@ -72,7 +72,7 @@ async def on_message(ctx):
             time.sleep(5)
             await ctx.message.delete()
             return
-        g.add_player(p, ctx)
+        g.add_player(g, p, ctx)
         await ctx.add_reaction("✅")
 
 

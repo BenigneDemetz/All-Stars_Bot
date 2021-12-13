@@ -24,7 +24,7 @@ class Game():
         print('game_stop')
         pass
 
-    def add_player(self, p: player, ctx):
+    def add_player(self, p: player):
         self.players.append(p)
 
     def has(self, p: player):
