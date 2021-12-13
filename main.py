@@ -67,7 +67,7 @@ async def on_message(ctx):
     if commande in ctx.content:
         p: Player = Player(ctx)
         print(p)
-        if g.has(p):
+        if g.has(g, p):
             await ctx.add_reaction("❌")
             time.sleep(5)
             await ctx.message.delete()
