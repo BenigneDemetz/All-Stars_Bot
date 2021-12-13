@@ -57,7 +57,7 @@ async def on_message(ctx):
     global g
     if g == None:
         return
-    if commande in ctx.message.content:
+    if commande in ctx.content:
         p: Player = Player(ctx.author)
         if g.has(p):
             await ctx.add_reaction("❌")
