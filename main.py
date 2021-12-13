@@ -30,7 +30,7 @@ async def startgiveaway(ctx, arg=1):
     global g
     if g != None:
         try:
-            await ctx.add_reaction("❌")
+            await ctx.message.add_reaction("❌")
         except Exception as e:
             print('error : \n' + str(e))
         return
