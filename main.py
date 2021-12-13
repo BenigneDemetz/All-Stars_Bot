@@ -52,7 +52,7 @@ async def stopgiveaway(ctx):
 
 
 @bot.event
-async def on_message(ctx: commands.Context):
+async def on_message(ctx):
     global g
     if g == None:
         return
