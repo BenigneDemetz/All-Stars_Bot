@@ -7,9 +7,9 @@ import functions
 
 class Game():
     guild: discord.Guild = None
-    players: list[player] = []
-    winners: list[player] = []
-    addresses: list[str] = []
+    players = []
+    winners = []
+    addresses = []
 
     def __init__(self, guild):
         self.guild = guild
@@ -24,7 +24,7 @@ class Game():
         print('game_stop')
         pass
 
-    def add_player(self, p: player):
+    def add_player(self, p: player, ctx):
         self.players.append(p)
 
     def has(self, p: player):
