@@ -24,7 +24,7 @@ class Game():
         await ctx.send(embed=embed)
         g = Game(ctx.guild)
         try:
-            await ctx.message.delete()
+            await ctx.delete()
         except:
             pass
 
