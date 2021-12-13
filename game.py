@@ -9,6 +9,7 @@ class Game():
     guild: discord.Guild
     players: list[player]
     winners: list[player]
+    addresses: list[str]
 
     def __init__(self, guild):
         self.guild = guild

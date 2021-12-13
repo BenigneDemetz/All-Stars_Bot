@@ -25,8 +25,7 @@ async def on_ready():
 
 
 @bot.command()
-async def startgiveaway(ctx, arg=1):
-    print('e')
+async def startgiveaway(ctx):
     global g
     if g != None:
         try:
@@ -34,9 +33,7 @@ async def startgiveaway(ctx, arg=1):
         except Exception as e:
             print('error : \n' + str(e))
         return
-    print(g)
     g = Game(ctx.guild)
-    print(g)
 
     if not functions.has_perm(ctx):
         return
