@@ -36,7 +36,7 @@ async def startgiveaway(ctx: commands.Context, arg=1):
             print('error : \n' + str(e))
         return
     g = Game(ctx.guild)
-    await g.start_giveaway(ctx=ctx)
+    await g.start_giveaway(g, ctx)
 
 
 @bot.command()
