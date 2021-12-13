@@ -6,10 +6,10 @@ import functions
 
 
 class Game():
-    guild: discord.Guild
-    players: list[player]
-    winners: list[player]
-    addresses: list[str]
+    guild: discord.Guild = None
+    players: list[player] = []
+    winners: list[player] = []
+    addresses: list[str] = []
 
     def __init__(self, guild):
         self.guild = guild
@@ -28,6 +28,7 @@ class Game():
         self.players.append(p)
 
     def has(self, p: player):
+        print(self.players)
         return p in self.players
 
     def save_players(self):
