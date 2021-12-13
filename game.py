@@ -22,7 +22,6 @@ class Game():
         print('game start')
         embed = discord.Embed(title="A Giveaway started !", color=0x00ff00)
         await ctx.send(embed=embed)
-        g = Game(ctx.guild)
         try:
             await ctx.delete()
         except:
