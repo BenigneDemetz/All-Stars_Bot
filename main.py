@@ -53,6 +53,7 @@ async def stopgiveaway(ctx):
 
 @bot.event
 async def on_message(ctx):
+    await bot.process_commands(ctx)  # activer les commandes
     global g
     if g == None:
         return
@@ -65,7 +66,6 @@ async def on_message(ctx):
             return
         g.add_player(p, ctx)
         await ctx.add_reaction("✅")
-    await bot.process_commands(ctx)  # activer les commandes
 
 
 
