@@ -25,7 +25,7 @@ async def on_ready():
 
 
 @bot.command()
-async def startgiveaway(ctx: commands.Context, arg=1):
+async def startgiveaway(ctx, arg=1):
     print('e')
     global g
     if g != None:
