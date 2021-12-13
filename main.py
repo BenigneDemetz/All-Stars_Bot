@@ -36,7 +36,37 @@ async def startgiveaway(ctx: commands.Context, arg=1):
             print('error : \n' + str(e))
         return
     g = Game()
-    await g.start_giveaway(ctx)
+    await g.start_giveaway(ctx=ctx)
+
+
+@bot.command()
+async def stopgiveaway(ctx):
+    global g
+    if g == None:
+        try:
+            await ctx.add_reaction("❌")
+        except Exception as e:
+            print('error : \n' + str(e))
+        return
+    await g.stop_giveaway(ctx)
+
+
+@bot.event
+async def on_message(ctx: commands.Context):
+    global g
+    if g == None:
+        return
+    if commande in ctx.message.content:
+        p: Player = Player(ctx.author)
+        if g.has(p):
+            await ctx.add_reaction("❌")
+            time.sleep(5)
+            await ctx.message.delete()
+            return
+        g.add_player(p, ctx)
+        await ctx.add_reaction("✅")
+    await bot.process_commands(ctx)  # activer les commandes
+
 
 
 
