@@ -28,15 +28,25 @@ async def on_ready():
 async def startgiveaway(ctx: commands.Context, arg=1):
     print('e')
     global g
-    print(g)
     if g != None:
         try:
             await ctx.add_reaction("❌")
         except Exception as e:
             print('error : \n' + str(e))
         return
+    print(g)
     g = Game(ctx.guild)
-    await g.start_giveaway(ctx)
+    print(g)
+
+    if not functions.has_perm(ctx):
+        return
+    print('game start')
+    embed = discord.Embed(title="A Giveaway started !", color=0x00ff00)
+    await ctx.send(embed=embed)
+    try:
+        await ctx.delete()
+    except:
+        pass
 
 
 @bot.command()

@@ -16,16 +16,8 @@ class Game():
     def __new__(self, *args, **kwargs):
         return self
 
-    async def start_giveaway(self, ctx):
-        if not functions.has_perm(ctx):
-            return
-        print('game start')
-        embed = discord.Embed(title="A Giveaway started !", color=0x00ff00)
-        await ctx.send(embed=embed)
-        try:
-            await ctx.delete()
-        except:
-            pass
+    def start_giveaway(self, ctx):
+        pass
 
     async def stop_giveaway(self, ctx):
         print('game_stop')
