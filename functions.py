@@ -1,10 +1,10 @@
 import json
-
+from player import Player
 import discord
 from discord.ext import commands
 
 
-def has_perm(ctx: commands.Context):
+def has_perm(ctx):
     author: discord.Member = ctx.author
     for i in author.roles:
         #            role staff                     role artist                  role dev
@@ -16,3 +16,13 @@ def has_perm(ctx: commands.Context):
 def load_players():
     with open('players.json', 'r') as f:
         return json.load(f)
+
+def create_player(ctx):
+    id = ctx.author.id
+    profil = ctx.author
+    address = ctx.content[ctx.content.find("0x"):]
+    address = address[:42]
+    name = ctx.author.name
+
+    p = Player(id, profil, name, 1, 0, address)
+    return p

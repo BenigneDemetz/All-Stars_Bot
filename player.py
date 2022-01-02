@@ -1,23 +1,16 @@
+from dataclasses import dataclass, field
 import discord
 from discord.ext import commands
-import functions
 
 
-class Player():
+@dataclass
+class Player:
     id: int
-    profil: discord.Member
-    participations: int = 1
-    wins = 0
+    profil: discord.Member = field(repr=False)
+    name: str
+    participations: int
+    wins: int
     address: str
 
-    def __init__(self, ctx):
-        self.id = ctx.author.id
-        if self.id in functions.load_players():
-            pass
-        self.profil = ctx.author
-        address = ctx.content[ctx.content.find("0x"):]
-        address = address[:42]
-        self.address = address
-
-    def __new__(self, *args, **kwargs):
-        return self
+    def getAddress(self):
+        return self.address
