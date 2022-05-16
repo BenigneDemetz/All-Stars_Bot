@@ -14,3 +14,6 @@ class Player:
 
     def getAddress(self):
         return self.address
+
+    def getProfil(self):
+        return self.profil

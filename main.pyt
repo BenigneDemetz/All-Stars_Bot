@@ -29,7 +29,6 @@ onvoice = {}
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Game(name="discord.gg/6b3KDQZkHm"))
     global allstars
     print('ready')
     for i in bot.guilds:
@@ -174,6 +173,12 @@ async def on_guild_channel_update(before, after):
         await after.move(end=True, category=category)
 
 
+@bot.event
+async def on_member_join(member):
+    #if member.joined_at
+    pass
+
+
 @bot.command()
 async def reorder_closed_tickets(ctx):
     guild = ctx.guild
@@ -238,13 +243,6 @@ async def on_member_remove(member):
 
 @bot.event
 async def on_member_join(member):
-    print("join")
-    if (datetime.datetime.now()-ctx.author.created_at).days < 7:
-        print((datetime.datetime.now()-ctx.author.created_at).days)
-        mp = await ctx.author.create_dm()
-        await mp.send("Your account is too recent ! Please send a message to <@259826927437611008> or <@260728854753181696> to talk about it and fix this")
-        await ctx.author.ban(reason="Account created " + str((datetime.datetime.now()-ctx.author.created_at).days) + " days ago")
-
 
     # Getting the invites before the user joining
     # from our cache for this specific guild
@@ -312,14 +310,7 @@ async def privategiveaway(ctx, arg):
 @bot.command()
 async def debuge(ctx):
     print(ctx.author.created_at)
-    allstars = await bot.fetch_guild(909518751194550303)
-    print(allstars, await allstars.fetch_members())
-
-
-    for i in allstars.members:
-        print(i.name)
-        if "Cavetotex" in i.name:
-            await i.ban()
+    print((datetime.datetime.now()-ctx.author.created_at).days)
     return
     msg = await bot.fetch_channel(909526463798202369)
     msg = await msg.history(limit=22).flatten()
@@ -458,7 +449,7 @@ async def sendmessage(ctx):
 async def setmoney(ctx, member, money):
     with open("xp.json", "r") as f:
             users = json.load(f)
-    users[member.replace("<@", "").replace(">", "")] = int(money)
+    users[member.replace("<@!", "").replace(">", "")] = int(money)
     with open("xp.json", "w") as f:
         json.dump(users, f)
     await ctx.message.add_reaction("✅")
@@ -468,9 +459,7 @@ async def setmoney(ctx, member, money):
 async def addmoney(ctx, member, money):
     with open("xp.json", "r") as f:
             users = json.load(f)
-    if member.replace("<@", "").replace(">", "") not in users:
-        users[member.replace("<@", "").replace(">", "")] = 0
-    users[member.replace("<@", "").replace(">", "")] += int(money)
+    users[member.replace("<@!", "").replace(">", "")] += int(money)
     with open("xp.json", "w") as f:
         json.dump(users, f)
     await ctx.message.add_reaction("✅")
@@ -480,9 +469,7 @@ async def addmoney(ctx, member, money):
 async def delmoney(ctx, member, money):
     with open("xp.json", "r") as f:
             users = json.load(f)
-    if member.replace("<@", "").replace(">", "") not in users:
-        users[member.replace("<@", "").replace(">", "")] = 0
-    users[member.replace("<@", "").replace(">", "")] -= int(money)
+    users[member.replace("<@!", "").replace(">", "")] -= int(money)
     with open("xp.json", "w") as f:
         json.dump(users, f)
     await ctx.message.add_reaction("✅")
@@ -494,20 +481,20 @@ async def money(ctx, member=None):
             users = json.load(f)
     print(users)
     if member != None:
-        id = member.replace("<@", "").replace(">", "")
+        id = member.replace("<@!", "").replace(">", "")
         member = await ctx.guild.fetch_member(int(id))
         print(member)
         if str(id) not in users:
-            await ctx.channel.send(member.nick + " doesn't have any nanoCoins <:nanocoin:972927818457559100>")
+            await ctx.channel.send(member.nick + " doesn't have any nanoCoins")
             return
         if member.nick == None:
             member.nick = member.name
-        await ctx.channel.send(member.nick + " has got " + str(users[str(member.id)]) + " nanoCoins <:nanocoin:972927818457559100>")
+        await ctx.channel.send(member.nick + " has got " + str(users[str(member.id)]) + " nanoCoins")
         return
     if str(ctx.author.id) not in users:
         await ctx.channel.send("You don't have any nanoCoins")
         return
-    await ctx.channel.send("You've got " + str(users[str(ctx.author.id)]) + " nanoCoins <:nanocoin:972927818457559100>")
+    await ctx.channel.send("You've got " + str(users[str(ctx.author.id)]) + " nanoCoins")
 
 
 @bot.event
@@ -563,21 +550,6 @@ async def xp(ctx):
 @bot.event
 async def on_message(ctx):
     await bot.process_commands(ctx)  # activer les commandes
-    print(ctx.content)
-
-
-    if (", welcome to **NANOWORLD - NFT** !" in ctx.content):
-        text = ctx.content[ctx.content.find("<@")+2:]
-        text = text[:text.find(">")]
-        print(text)
-        joined = await allstars.fetch_member(text)
-        print(joined)
-        if (datetime.datetime.now() - joined.created_at).days < 2 or "Cavetotex" in joined.name or "Clarixbit" in joined.name:
-            print((datetime.datetime.now()-joined.created_at).days)
-            mp = await joined.create_dm()
-            await mp.send("Your account is too recent ! Please send a message to <@259826927437611008> or <@260728854753181696> to talk about if and fix this")
-            await joined.ban(reason="Account created " + str((datetime.datetime.now()-joined.created_at).days) + " days ago")
-            return
 
     if ctx.author.bot or ctx.content.startswith("$"):
         return
@@ -591,11 +563,8 @@ async def on_message(ctx):
     try:
         if ctx.channel.id in listechannelstotalk and not ctx.content.startswith("$"):
             await xp(ctx)
-
     except Exception as e:
         print(e.args)
-
-
     if ctx.channel.id in listechannelstotalk:
         users = {}
         with open("chating.json", "r") as f:
@@ -605,6 +574,7 @@ async def on_message(ctx):
         users[str(ctx.author.id)] += 1
         with open("chating.json", "w") as f:
             json.dump(users, f)
+        print(users)
         if users[str(ctx.author.id)] == 30:
             try:
                 guild = bot.get_guild(909518751194550303)
